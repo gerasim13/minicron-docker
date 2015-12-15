@@ -9,9 +9,7 @@ RUN apk add libxml2 libxml2-dev
 RUN apk add libffi libffi-dev
 RUN apk add zlib zlib-dev
 RUN apk add ruby-rake ruby-mysql2
-RUN apk add libstdc++ less openssh
-RUN rc-update add sshd
-RUN /etc/init.d/sshd start
+RUN apk add libstdc++ less
 # Install minicron
 ENV APP_PATH=/app
 WORKDIR $APP_PATH
@@ -22,6 +20,10 @@ RUN gem install erubis net-ssh mail formatador
 RUN bundle install
 RUN bundle update
 CMD ["/usr/bin/irb"]
+# Install openssh
+RUN openssh
+RUN rc-update add sshd
+RUN /etc/init.d/sshd start
 # Cleanup
 RUN apk del build-base ruby-dev sqlite-dev libxslt-dev libxml2-dev libffi-dev zlib-dev && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/*
