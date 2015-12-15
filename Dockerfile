@@ -21,7 +21,7 @@ RUN bundle install
 RUN bundle update
 CMD ["/usr/bin/irb"]
 # Install openssh
-RUN openssh
+RUN apk add openssh
 RUN rc-update add sshd
 RUN /etc/init.d/sshd start
 # Cleanup
