@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-ruby
 MAINTAINER Pavel Litvinenko <gerasim13@gmail.com>
 # Install minicron build dependencies
-RUN apk add --update git bash build-base libstdc++ less \
+RUN apk add --update git bash openssh build-base libstdc++ less \
     sqlite-libs sqlite-dev libxslt libxslt-dev \
     libxml2 libxml2-dev libffi libffi-dev zlib zlib-dev \
     ruby-dev ruby-bundler ruby-rake ruby-mysql2 ca-certificates
@@ -18,10 +18,7 @@ RUN gem install ffi -- --use-system-libraries
 RUN gem install erubis net-ssh mail formatador
 RUN bundle install
 RUN bundle update
-# Install openssh
-RUN apk add openssh
 RUN rc-update add sshd
-RUN /etc/init.d/sshd restart
 # Cleanup
 RUN apk del build-base ruby-dev sqlite-dev libxslt-dev libxml2-dev libffi-dev zlib-dev && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/*
