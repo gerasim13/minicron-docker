@@ -1,8 +1,7 @@
 FROM frolvlad/alpine-ruby
 MAINTAINER Pavel Litvinenko <gerasim13@gmail.com>
 # Install minicron build dependencies
-RUN apk update
-RUN apk add git bash build-base libstdc++ less \
+RUN apk add --update git bash build-base libstdc++ less \
     sqlite-libs sqlite-dev libxslt libxslt-dev \
     libxml2 libxml2-dev libffi libffi-dev zlib zlib-dev \
     ruby-dev ruby-bundler ruby-rake ruby-mysql2 ca-certificates
