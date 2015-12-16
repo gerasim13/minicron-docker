@@ -23,7 +23,7 @@ CMD ["/usr/bin/irb"]
 # Install openssh
 RUN apk add openssh
 RUN rc-update add sshd
-RUN /etc/init.d/sshd start
+RUN /etc/init.d/sshd restart
 # Cleanup
 RUN apk del build-base ruby-dev sqlite-dev libxslt-dev libxml2-dev libffi-dev zlib-dev && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/*
