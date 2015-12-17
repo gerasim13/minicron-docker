@@ -2,9 +2,9 @@ FROM frolvlad/alpine-ruby
 MAINTAINER Pavel Litvinenko <gerasim13@gmail.com>
 # Install minicron build dependencies
 RUN apk add --update git bash openssh build-base libstdc++ less \
-    sqlite-libs sqlite-dev libxslt libxslt-dev \
+    sqlite-libs sqlite-dev libxslt libxslt-dev ca-certificates \
     libxml2 libxml2-dev libffi libffi-dev zlib zlib-dev \
-    ruby-dev ruby-bundler ruby-rake ruby-mysql2 ca-certificates
+    ruby-dev ruby-bundler ruby-rake ruby-irb ruby-mysql2
 # Enable auto completion, auto indent and history
 RUN echo 'require "irb/completion"' >> "$HOME/.irbrc" && \
     echo 'IRB.conf[:AUTO_INDENT] = true' >> "$HOME/.irbrc" && \
